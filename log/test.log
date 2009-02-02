@@ -1422,3 +1422,49 @@ Processing ProductsController#index (for 0.0.0.0 at 2009-02-01 22:05:10) [GET]
 Rendering template within layouts/products
 Rendering products/index
 Completed in 40ms (View: 31, DB: 8) | 200 OK [http://test.host/products]
+  [4;36;1mProduct Load (5.2ms)[0m   [0;1mSELECT * FROM "products" ORDER BY title[0m
+  [4;35;1mProduct Load (1.6ms)[0m   [0mSELECT * FROM "products" [0m
+  [4;36;1mProduct Load (1.4ms)[0m   [0;1mSELECT * FROM "products" WHERE ("products"."id" = 953125641) [0m
+  [4;35;1mProduct Exists (0.6ms)[0m   [0mSELECT "products".id FROM "products" WHERE ("products"."title" = 'awesomeness' AND "products".id <> 953125641) LIMIT 1[0m
+  [4;36;1mProduct Update (5.0ms)[0m   [0;1mUPDATE "products" SET "title" = 'awesomeness', "image_url" = 'hello.jpg', "price" = 1000, "updated_at" = '2009-02-02 06:20:10' WHERE "id" = 953125641[0m
+  [4;35;1mProduct Exists (0.9ms)[0m   [0mSELECT "products".id FROM "products" WHERE ("products"."title" IS NULL) LIMIT 1[0m
+  [4;36;1mProduct Exists (3.0ms)[0m   [0;1mSELECT "products".id FROM "products" WHERE ("products"."title" IS NULL) LIMIT 1[0m
+  [4;35;1mProduct Exists (0.8ms)[0m   [0mSELECT "products".id FROM "products" WHERE ("products"."title" IS NULL) LIMIT 1[0m
+  [4;36;1mProduct Load (1.6ms)[0m   [0;1mSELECT * FROM "products" WHERE ("products"."id" = 953125641) [0m
+  [4;35;1mProduct Exists (0.8ms)[0m   [0mSELECT "products".id FROM "products" WHERE ("products"."title" = 'MyString' AND "products".id <> 953125641) LIMIT 1[0m
+  [4;36;1mProduct Load (1.4ms)[0m   [0;1mSELECT * FROM "products" WHERE ("products"."id" = 953125641) [0m
+  [4;35;1mProduct Exists (0.6ms)[0m   [0mSELECT "products".id FROM "products" WHERE ("products"."title" = 'AwesomeVille' AND "products".id <> 953125641) LIMIT 1[0m
+  [4;36;1mProduct Exists (0.6ms)[0m   [0;1mSELECT "products".id FROM "products" WHERE ("products"."title" = 'AwesomeVille' AND "products".id <> 953125641) LIMIT 1[0m
+  [4;35;1mProduct Exists (1.0ms)[0m   [0mSELECT "products".id FROM "products" WHERE ("products"."title" = 'AwesomeVille' AND "products".id <> 953125641) LIMIT 1[0m
+  [4;36;1mProduct Update (10.1ms)[0m   [0;1mUPDATE "products" SET "title" = 'AwesomeVille', "image_url" = 'hello.png', "price" = 1, "updated_at" = '2009-02-02 06:20:10' WHERE "id" = 953125641[0m
+  [4;35;1mProduct Load (2.8ms)[0m   [0mSELECT * FROM "products" WHERE ("products"."id" = 953125641) [0m
+WARNING: Can't mass-assign these protected attributes: id
+  [4;36;1mProduct Exists (0.9ms)[0m   [0;1mSELECT "products".id FROM "products" WHERE ("products"."title" = 'MyString') LIMIT 1[0m
+  [4;35;1mProduct Exists (1.1ms)[0m   [0mSELECT "products".id FROM "products" WHERE ("products"."title" = 'Awesomeville') LIMIT 1[0m
+  [4;36;1mProduct Exists (1.8ms)[0m   [0;1mSELECT "products".id FROM "products" WHERE ("products"."title" = 'Awesomeville') LIMIT 1[0m
+
+
+Processing ProductsController#index (for 0.0.0.0 at 2009-02-01 22:20:21) [GET]
+  [4;36;1mProduct Load (1.9ms)[0m   [0;1mSELECT * FROM "products" [0m
+Rendering template within layouts/products
+Rendering products/index
+  [4;36;1mProduct Load (5.6ms)[0m   [0;1mSELECT * FROM "products" ORDER BY title[0m
+  [4;35;1mProduct Load (1.4ms)[0m   [0mSELECT * FROM "products" [0m
+  [4;36;1mProduct Load (2.7ms)[0m   [0;1mSELECT * FROM "products" WHERE ("products"."id" = 953125641) [0m
+  [4;35;1mProduct Exists (0.6ms)[0m   [0mSELECT "products".id FROM "products" WHERE ("products"."title" = 'awesomeness' AND "products".id <> 953125641) LIMIT 1[0m
+  [4;36;1mProduct Update (5.7ms)[0m   [0;1mUPDATE "products" SET "title" = 'awesomeness', "image_url" = 'hello.jpg', "price" = 1000, "updated_at" = '2009-02-02 06:21:04' WHERE "id" = 953125641[0m
+  [4;35;1mProduct Exists (0.9ms)[0m   [0mSELECT "products".id FROM "products" WHERE ("products"."title" IS NULL) LIMIT 1[0m
+  [4;36;1mProduct Exists (1.1ms)[0m   [0;1mSELECT "products".id FROM "products" WHERE ("products"."title" IS NULL) LIMIT 1[0m
+  [4;35;1mProduct Exists (0.8ms)[0m   [0mSELECT "products".id FROM "products" WHERE ("products"."title" IS NULL) LIMIT 1[0m
+  [4;36;1mProduct Load (1.4ms)[0m   [0;1mSELECT * FROM "products" WHERE ("products"."id" = 953125641) [0m
+  [4;35;1mProduct Exists (0.8ms)[0m   [0mSELECT "products".id FROM "products" WHERE ("products"."title" = 'MyString' AND "products".id <> 953125641) LIMIT 1[0m
+  [4;36;1mProduct Load (1.5ms)[0m   [0;1mSELECT * FROM "products" WHERE ("products"."id" = 953125641) [0m
+  [4;35;1mProduct Exists (0.6ms)[0m   [0mSELECT "products".id FROM "products" WHERE ("products"."title" = 'AwesomeVille' AND "products".id <> 953125641) LIMIT 1[0m
+  [4;36;1mProduct Exists (0.6ms)[0m   [0;1mSELECT "products".id FROM "products" WHERE ("products"."title" = 'AwesomeVille' AND "products".id <> 953125641) LIMIT 1[0m
+  [4;35;1mProduct Exists (0.6ms)[0m   [0mSELECT "products".id FROM "products" WHERE ("products"."title" = 'AwesomeVille' AND "products".id <> 953125641) LIMIT 1[0m
+  [4;36;1mProduct Update (4.7ms)[0m   [0;1mUPDATE "products" SET "title" = 'AwesomeVille', "image_url" = 'hello.png', "price" = 1, "updated_at" = '2009-02-02 06:21:05' WHERE "id" = 953125641[0m
+  [4;35;1mProduct Load (1.5ms)[0m   [0mSELECT * FROM "products" WHERE ("products"."id" = 953125641) [0m
+WARNING: Can't mass-assign these protected attributes: id
+  [4;36;1mProduct Exists (0.8ms)[0m   [0;1mSELECT "products".id FROM "products" WHERE ("products"."title" = 'MyString') LIMIT 1[0m
+  [4;35;1mProduct Exists (2.4ms)[0m   [0mSELECT "products".id FROM "products" WHERE ("products"."title" = 'Awesomeville') LIMIT 1[0m
+  [4;36;1mProduct Exists (0.7ms)[0m   [0;1mSELECT "products".id FROM "products" WHERE ("products"."title" = 'Awesomeville') LIMIT 1[0m
