@@ -1,0 +1,29 @@
+<div id="product-list">
+  <h1>Listing products</h1>
+
+<center>
+<table cellpadding="5" cellspacing="0" width="75%">
+<% for product in @products %>
+  <tr valign="top" class="<%= cycle('list-line-odd', 'list-line-even') %>">
+    <td align="center"><img class="list-image" src="<%=h product.image_url %>" /></td>
+    <td width="70%">
+        <big class="list-title">
+          <b><%=h product.title %></b><br />
+        </big>
+  
+        <strong><em><%=h number_to_currency(product.convert_to_currency) %></em></strong> |
+        <small><small><%=h truncate(product.description.gsub(/<.*?>/,''), 200) %></small></small>
+    </td>
+    <td></td>
+    <td>
+      <b><%= link_to 'Show', product %></b><br />
+      <small><%= link_to 'Edit', edit_product_path(product) %><br />
+      <%= link_to 'Destroy', product, :confirm => 'Are you sure?', :method => :delete %></small></td>
+  </tr>
+<% end %>
+</table>
+</center>
+</div>
+<br />
+
+<%= link_to 'New product', new_product_path %>

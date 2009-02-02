@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+  <title>Pragprog Books Online Store</title>
+<!-- START:stylesheet -->
+  <%= stylesheet_link_tag "depot", :media => "all" %><!-- <label id="code.slt"/> -->
+<!-- END:stylesheet -->
+</head>
+<body id="store">
+  <div id="banner">
+    <%= image_tag("logo.png", :align =>"right", :alt => "Pragmatic Bookself") %>
+    <b><%= @page_title || "Featured Items" %></b><!-- <label id="code.depot.e.title"/> -->
+  </div>
+  <div id="columns">
+    <menu id="side">
+      <li><a href="http://www....">Home</a></li>
+      <li><a href="http://www..../faq">Questions</a></li>
+      <li><a href="http://www..../news">News</a></li>
+      <li><a href="http://www..../contact">Contact</a></li>
+      <li><span><%= Time.now.to_s(:short) %></span></li>
+    </menu>
+    <div id="main">
+      <%= yield :layout %><!-- <label id="code.depot.e.include"/> -->
+    </div>
+  </div>
+</body>
+</html>
