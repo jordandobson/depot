@@ -11,8 +11,8 @@
           <b><%=h product.title %></b><br />
         </big>
   
-        <strong><em><%=h number_to_currency(product.convert_to_currency) %></em></strong> |
-        <small><small><%=h truncate(product.description.gsub(/<.*?>/,''), 200) %></small></small>
+        <strong><em><%= h number_to_currency(product.price/100.0) %></em></strong> |
+        <small><small><%= h product.description.gsub(/<.*?>/,'')[0..100] %></small></small>
     </td>
     <td></td>
     <td>

@@ -1,11 +1,13 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:
-  title: MyString
-  description: MyText
-  image_url: MyString
+  title: AwesomeBook!
+  description: Well it's pretty easy to tell this is the awesome book!
+  image_url: awesome.png
+  price: 1099
 
 two:
-  title: MyString
-  description: MyText
-  image_url: MyString
+  title: AwesomeBook! Vol. 2
+  description: The return of everyone's favorite AwesomeBook!
+  image_url: awesomev2.png
+  price: 2995
