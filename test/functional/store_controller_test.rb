@@ -17,7 +17,7 @@ class StoreControllerTest < ActionController::TestCase
 
       # This hung me up quite a bit
       #assert @response.body =~ /#{act}/
-      #act = number_to_currency(product.price/100.0)
+      act = number_to_currency(product.price/100.0)
       #assert_equal "$10.99", act
       #raise act.inspect
       #assert_match /#{act}/, @response.body

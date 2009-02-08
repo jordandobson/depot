@@ -17,6 +17,8 @@ class Product < ActiveRecord::Base
   # Only one of This value in DataBase 
   validates_uniqueness_of :title
 
+  validate :price_must_include_cents
+
   # Use RegEx against a field 
   validates_format_of :image_url,
     :with => %r{\.(gif|jpg|png)$}i,
@@ -29,6 +31,10 @@ class Product < ActiveRecord::Base
 
     def price_must_be_at_least_a_cent
       errors.add(:price, 'must be at least $0.01') if price.nil? || price < 1    
+    end
+
+    def price_must_include_cents
+      errors.add(:price, 'must end in cents.') if price   
     end
 
 end

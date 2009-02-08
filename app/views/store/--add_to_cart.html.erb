@@ -1,0 +1,10 @@
+<h1>Your Pragmatic Cart</h1> 
+<ul class="cartlist">
+  <%= render(:partial => "cart_item", :collection => @cart.items) %>
+</ul>
+<div id="total">
+  <b>Cart Total</b>
+  <big><%=h number_to_currency( @cart.total_price / 100.0 )%></big>
+</div>
+<hr size="1" />
+<%= button_to "Empty cart", :action => :empty_cart %> 

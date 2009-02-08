@@ -240,7 +240,7 @@ h1 {
   padding-top: 1em;
   padding-left: 1em;
   padding-bottom: 1em;
-  width: 12em;
+  width: 13em;
   background: #141;
 }
 
@@ -414,6 +414,7 @@ h1 {
   list-style: none;
   margin: 0;
   padding: 0;
+  display: block;
 
 }
 #side li{
@@ -421,7 +422,6 @@ h1 {
   text-indent: 1em;
   line-height: 3em;
   display: block;
-  width: 100%;
   padding-right: 1em;  
 }
 
@@ -431,4 +431,145 @@ menu li span{
   font-family: helvetica;
   font-size: .75em;
   font-weight: bold;
+}
+
+#notice{
+  background-color: red;
+  color: white;
+  line-height: 2em;
+}
+ul.cartlist{
+  margin: 0 0 1em 0;
+  padding: 0;
+  border-top: 1px solid #ccc;
+}
+ul.cartlist li{
+  display: block;
+  list-style: none;
+  border-bottom: 1px solid #ccc;
+  margin: 0;
+  padding: 0 2%;
+  line-height: 2em;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+}
+
+ul.cartlist li strong{
+  width: 49%;
+  display: inline-block;
+  line-height: inherit
+}
+
+ul.cartlist li strong a{
+  text-decoration: none;
+  padding: 5px;
+  line-height: inherit;
+}
+ul.cartlist li strong a:hover{
+  color: #000 !important;
+  background-color: #bfb;
+}
+
+
+
+ul.cartlist li sup{
+  display: inline-block;
+  width: 25%;
+  text-align: center;
+  font-size: .75em;
+  vertical-align: bottom;
+  color: #bbb;
+  line-height: inherit;
+  border-left: 1px dotted #ccc;
+  border-right: 1px dotted #ccc;
+}
+ul.cartlist li span{
+  width: 25%;
+  display: inline-block;
+  text-align: right;
+  line-height: inherit;
+}
+ul.cartlist li span b{
+  color: #bbb;
+  font-variant: small-caps;
+}
+ul.cartlist li span span{
+  width: 40%;
+}
+
+
+div#total{
+  padding: 0 2%;
+  text-align: right;
+  margin-bottom: 1em;
+}
+div#total b{
+  padding-right: 2%;
+  text-align: right;
+  font-variant: small-caps;
+}
+
+menu#side li small{
+  color: #fff;
+}
+
+div#cart{
+  font-size: .5em;
+  width: 21em;
+  padding: 0 1em;
+  display: block;
+  margin: 0;
+  float: left;
+  border-bottom: 1px dotted #fff;
+}
+div#cart div#cartTitle{
+  font-size: 200%;
+  font-weight: bold;
+  margin-top: .5em;
+}
+div#cart ul.cartlist{
+  margin-bottom: 0em;
+  border: none;
+}
+div#cart li{
+  padding: .25em 0em;
+  line-height: 1.5em;
+  border-left: none;
+  border-right: none;
+}
+
+div#cart strong{
+  display: block;
+  width: 100%;
+  font-size: 120%;
+}
+div#cart ul.cartlist li sup{
+  display: none;
+}
+
+div#cart ul.cartlist li span{
+  width: 100%;
+  display: block;
+  text-align: right;
+  line-height: inherit;
+  color: #ccc;
+}
+div#cart ul.cartlist li span span{
+  display: inline;
+  padding-left: 1em;
+}
+div#cart div#total{
+  line-height: 3em;
+}
+div#cart div#total{
+  font-size: 150%;
+}
+div#cart div#total{
+  padding: 0 2%;
+  text-align: right;
+  margin-bottom: .25em;
+  border-bottom: 1px solid #999;
+}
+div#cart hr{
+  display: none;
 }

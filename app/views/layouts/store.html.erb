@@ -3,25 +3,30 @@
 <html>
 <head>
   <title>Pragprog Books Online Store</title>
-<!-- START:stylesheet -->
-  <%= stylesheet_link_tag "depot", :media => "all" %><!-- <label id="code.slt"/> -->
-<!-- END:stylesheet -->
+  <%= stylesheet_link_tag "depot", :media => "all" %>
+  <%= javascript_include_tag :defaults %> 
+
 </head>
 <body id="store">
   <div id="banner">
     <%= image_tag("logo.png", :align =>"right", :alt => "Pragmatic Bookself") %>
-    <b><%= @page_title || "Featured Items" %></b><!-- <label id="code.depot.e.title"/> -->
+    <b><%= @page_title || "Featured Items" %></b>
   </div>
-  <div id="columns">
+  <div id="columns">      
     <menu id="side">
-      <li><a href="http://www....">Home</a></li>
-      <li><a href="http://www..../faq">Questions</a></li>
-      <li><a href="http://www..../news">News</a></li>
-      <li><a href="http://www..../contact">Contact</a></li>
+    <% hidden_div_if(@cart.items.empty?, :id => "cart") do %>
+      <%= render(:partial => "cart", :object => @cart) %>
+    <% end %>
+      <li><a href="/store">Home</a></li>
       <li><span><%= Time.now.to_s(:short) %></span></li>
+      <% if session[:counter] >=5 %><li><small>You've been here <%= pluralize(session[:counter], "time")
+%></small></li><% end %>
     </menu>
     <div id="main">
-      <%= yield :layout %><!-- <label id="code.depot.e.include"/> -->
+      <%if flash[:notice] -%>
+        <div id="notice"><%= flash[:notice] %></div>
+      <% end -%>
+      <%= yield :layout %>
     </div>
   </div>
 </body>
