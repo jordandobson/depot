@@ -9,7 +9,6 @@ class StoreController < ApplicationController
   end
 
   def add_to_cart
-
     begin
       product = Product.find(params[:id])
     rescue ActiveRecord::RecordNotFound
@@ -19,7 +18,6 @@ class StoreController < ApplicationController
       @cart = find_cart
       @current_item = @cart.add_product(product)
       session[:counter] = 0
-
       if request.xhr?
         respond_to { |format| format.js }
       else
@@ -27,19 +25,20 @@ class StoreController < ApplicationController
       end
     end
   end
-  
+
   def remove_product
     @cart = find_cart
-    @cart.less_product(params[:id])  
+    @cart.less_product(params[:id].to_i)
     redirect_to_index
   end
 
   def empty_cart
+    @cart = find_cart
     session[:cart] = nil
     if request.xhr?
       respond_to { |format| format.js }
     else
-      redirect_to_index
+      redirect_to_index "Your Cart is Empty"
     end
   end
 

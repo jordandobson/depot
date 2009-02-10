@@ -3,7 +3,10 @@
 <%else %>
   <li>
 <% end %>
-    <strong><%=h cart_item.quantity %> &times; <%= h cart_item.title %> <%= link_to '&ndash', :controller => "store", :action => "remove_product", :id => cart_item.oid, :method => "post" %></strong>
+    <strong>
+      <%=h cart_item.quantity %> &times; <%= h cart_item.title %>
+      <%= link_to '&ndash', :controller => "store", :action => "remove_product", :id => cart_item.product.id %>
+    </strong>
     <sup><%= h number_to_currency(cart_item.price / cart_item.quantity / 100.0) %> <i>per item</i> </sup>
     <span><small><b>Item Total</b></small> <span><%= h number_to_currency( cart_item.price / 100.0 ) %></span></span>
   </li>

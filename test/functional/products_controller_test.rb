@@ -24,8 +24,6 @@ class ProductsControllerTest < ActionController::TestCase
       :name => 'product[price]'
     }
   end
- 
-# Should delete a product
 
   test "should create product" do
     assert_difference('Product.count') do

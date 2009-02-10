@@ -1,11 +1,10 @@
 class CartItem
 
-  attr_reader :product, :quantity, :oid
+  attr_reader :product, :quantity
 
   def initialize product
     @product = product
     @quantity = 1
-    @oid = product.id
   end
 
   def decrement_quantity
