@@ -2,7 +2,9 @@
 # Likewise, all the methods added will be available for all controllers.
 
 class ApplicationController < ActionController::Base
-
+  layout "store"
+  
+  before_filter :authorize, :except => :login
   session :session_key => '_depot_session_id'
 
   helper :all # include all helpers, all the time
@@ -15,5 +17,13 @@ class ApplicationController < ActionController::Base
   # Uncomment this to filter the contents of submitted sensitive data parameters
   # from your application log (in this case, all fields with names like "password"). 
   # filter_parameter_logging :password
+
+  def authorize
+    unless User.find_by_id(session[:user_id])
+      session[:original_uri] = request.request_uri
+      flash[:notice] = "Please log in" 
+      redirect_to :controller => :admin, :action => :login 
+    end 
+  end 
 
 end

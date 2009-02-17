@@ -12,4 +12,5 @@
     <% form_remote_tag :url => { :action => :empty_cart } do -%>
       <%= submit_tag "Empty Cart" %> 
     <% end -%> 
+    <%= button_to "Checkout", :action => :checkout if ! @order %>
 <% end %>

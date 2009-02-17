@@ -1,9 +1,9 @@
-# This file defines the order things should happen and how to respond
-
 class StoreController < ApplicationController
 
+  before_filter :get_session
+  before_filter :find_cart, :except => :empty_cart
+
   def index
-    @cart = find_cart
     @products = Product.find_products_for_sale
     get_session
   end
@@ -15,7 +15,6 @@ class StoreController < ApplicationController
       logger.error("Attempt to access invalid product #{params[:id]}")
       redirect_to_index "This product does not exist"
     else
-      @cart = find_cart
       @current_item = @cart.add_product(product)
       session[:counter] = 0
       if request.xhr?
@@ -27,19 +26,38 @@ class StoreController < ApplicationController
   end
 
   def remove_product
-    @cart = find_cart
     @cart.less_product(params[:id].to_i)
     redirect_to_index
   end
 
   def empty_cart
-    @cart = find_cart
     session[:cart] = nil
     if request.xhr?
       respond_to { |format| format.js }
     else
       redirect_to_index "Your Cart is Empty"
     end
+  end
+
+  # Test This
+  def checkout
+    if @cart.items.empty?
+      redirect_to_index "Your Cart is Empty"
+    else
+      @order = Order.new
+    end
+  end
+
+  # Test This
+  def save_order
+    @order = Order.new(params[:order])
+    @order.add_line_items_from_cart(@cart)
+    if @order.save
+      session[:cart] = nil
+      redirect_to_index("Thank you for your order") 
+    else 
+      render :action => :checkout 
+    end 
   end
 
   private
@@ -49,9 +67,8 @@ class StoreController < ApplicationController
     redirect_to :action => :index
   end
 
-
   def find_cart
-    session[:cart] ||= Cart.new
+    @cart = (session[:cart] ||= Cart.new)
   end
 
   def get_session
@@ -61,5 +78,11 @@ class StoreController < ApplicationController
       session[:counter] += 1
     end
   end
+
+protected
+
+  def authorize
+  end
+
 
 end

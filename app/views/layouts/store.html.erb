@@ -14,13 +14,20 @@
   </div>
   <div id="columns">      
     <menu id="side">
-    <% hidden_div_if(@cart.items.empty?, :id => "cart") do %>
-      <%= render(:partial => "cart", :object => @cart) %>
-    <% end %>
-      <li><a href="/store">Home</a></li>
-      <li><span><%= Time.now.to_s(:short) %></span></li>
+    <% if @cart %>
+      <% hidden_div_if(@cart.items.empty?, :id => "cart") do %>
+        <%= render(:partial => "cart", :object => @cart) %>
+      <% end %>
       <% if session[:counter] >=5 %><li><small>You've been here <%= pluralize(session[:counter], "time")
 %></small></li><% end %>
+    <% end %>
+      <li><a href="/store">Home</a></li>
+      <% if session[:user_id] %> 
+        <li><%= link_to 'Products', :controller => 'products' %></li>
+        <li><%= link_to 'Users', :controller => 'users' %></li>
+        <li><%= link_to 'Logout', :controller => :admin, :action => 'logout' %></li>
+      <% end %>
+      <li><span><%= Time.now.to_s(:short) %></span></li>
     </menu>
     <div id="main">
       <%if flash[:notice] -%>

@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: Small Bird
+  address: 123 Seasame Street
+  email: chirp@bird.com
+  pay_type: check
+ 
+two:
+  name: Jordan Dobson
+  address: 123 W. East Ave.
+  email: bob.bob@bob.com
+  pay_type: po

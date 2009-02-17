@@ -1,5 +1,7 @@
 class Product < ActiveRecord::Base
 
+  has_many :line_items
+
   def self.find_products_for_sale 
     # All resulsts sorted by title
     find(:all, :order => "title") 
