@@ -1,4 +1,9 @@
 jordan:
   name: jordan
   salt: meow
-  hashed_password: <%= User.encrypted_password('hello' ,'meow') %>
+  hashed_password: <%= User.encrypted_password('dobson' ,'meow') %>
+
+liz:
+  name: liz
+  salt: purrr
+  hashed_password: <%= User.encrypted_password('dobson' ,'purrr') %>

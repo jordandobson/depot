@@ -90,9 +90,9 @@ class StoreControllerTest < ActionController::TestCase
       }
     assert :success
     assert_template 'store/checkout'
+
     assert_match /<div .* id="errorExplanation">/, @response.body
-    assert_match /<div .* id="errorExplanation">/, @response.body
-    assert_match /<h2>5 errors/, @response.body
+    assert_match /<h2>6 errors/, @response.body
 
   end
   

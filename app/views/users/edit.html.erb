@@ -7,14 +7,8 @@
     <%= f.label :name %><br />
     <%= f.text_field :name %>
   </p>
-  <p>
-    <%= f.label :hashed_password %><br />
-    <%= f.text_field :hashed_password %>
-  </p>
-  <p>
-    <%= f.label :salt %><br />
-    <%= f.text_field :salt %>
-  </p>
+    <%= f.hidden_field :hashed_password %>
+    <%= f.hidden_field :salt %>
   <p>
     <%= f.submit "Update" %>
   </p>
