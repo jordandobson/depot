@@ -1,6 +1,8 @@
 class Product < ActiveRecord::Base
-
+  
+  # Lets me go from Product to find orders via line items
   has_many :orders, :through => :line_items
+
   has_many :line_items
 
   def self.find_products_for_sale 
