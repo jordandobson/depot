@@ -29,9 +29,8 @@ class InfoControllerTest < ActionController::TestCase
     get :who_bought, :id => products(:one).id, :format => "atom"
     assert_response :success
     # Ensure it has XML TAG in the response body
-    puts  @response.body
+    # puts  @response.body
     assert_match /<?xml.*?>\n<feed.*xmlns="http:\/\/www.w3.org\/2005\/Atom">/, @response.body
   end
-
 
 end

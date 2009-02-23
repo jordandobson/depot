@@ -8,6 +8,8 @@ class Product < ActiveRecord::Base
   def self.find_products_for_sale 
     # All resulsts sorted by title
     find(:all, :order => "title") 
+    # Do is if doing it by locale
+    # find(:all, :order => "title", :conditions => {:locale => I18n.locale}
   end
 
   # Is this entered? 

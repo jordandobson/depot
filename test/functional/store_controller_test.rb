@@ -2,6 +2,10 @@ require 'test_helper'
 
 class StoreControllerTest < ActionController::TestCase
 
+  def setup
+    @es = YAML.load_file("#{LOCALES_DIRECTORY}es.yml")['es']
+  end
+
   test "should get index" do
     get :index
     assert_response :success
@@ -91,8 +95,8 @@ class StoreControllerTest < ActionController::TestCase
     assert :success
     assert_template 'store/checkout'
 
-    assert_match /<div .* id="errorExplanation">/, @response.body
-    assert_match /<h2>6 errors/, @response.body
+    assert_match /<div .* id="errorExplanation">/,  @response.body
+    assert_match /<h2>6 errors/,                    @response.body
 
   end
   
@@ -112,6 +116,95 @@ class StoreControllerTest < ActionController::TestCase
     assert_response :redirect
     assert_redirected_to :controller => :store, :action => :index
     assert flash[:notice]
+  end
+
+  test "that default locale is set" do
+    get :index
+    assert_response :success
+    assert_equal I18n.locale, I18n.default_locale
+  end
+
+  test "that unknown locale is set to default" do
+    german = 'de'
+    get :index, :locale => german
+    assert_response :success
+    assert_equal I18n.locale, I18n.default_locale
+    assert_equal I18n.locale, @response.session[:locale]
+    assert_equal "#{german} translation not available", @response.flash[:notice]
+  end
+
+  test "that known locale changes view and layouts on index" do
+    get :index, :locale => 'es'
+    assert_response :success
+
+    assert_match @es['layout']['side']['home'],               @response.body
+    assert_match @es['layout']['title'],                      @response.body
+    assert_match @es['main']['title'],                        @response.body
+    assert_match @es['main']['button']['add'],                @response.body
+    assert_match @es['number']['currency']['format']['unit'], @response.body
+  end
+
+  test "that spanish locale changes views in checkout" do
+    get :add_to_cart, :id => products(:one).id
+    assert_response :redirect
+    get :checkout, :locale => 'es'
+    assert_response :success
+    assert_match @es['layout']['cart']['title'],              @response.body
+    assert_match @es['layout']['cart']['button']['empty'],    @response.body
+    assert_match @es['checkout']['legend'],                   @response.body
+    assert_match @es['checkout']['name'],                     @response.body
+    assert_match @es['checkout']['address'],                  @response.body
+    assert_match @es['checkout']['email'],                    @response.body
+    assert_match @es['checkout']['pay_type'],                 @response.body
+    assert_match @es['checkout']['pay_prompt'],               @response.body
+    assert_match @es['checkout']['submit'],                   @response.body
+  end
+
+  test "that known locale displays checkout errors" do
+    get :add_to_cart, :id => products(:one).id
+    get :checkout, :locale => 'es'
+    assert_response :success
+    post :save_order, :order => {
+        :name         => '',
+        :address      => '',
+        :email        => '',
+        :pay_type     => ''
+      }
+    assert_response :success
+    assert_match @es['activerecord']['models']['order'],                        @response.body
+    assert_match @es['activerecord']['errors']['template']['body'],             @response.body
+    assert_match @es['activerecord']['errors']['messages']['inclusion'],        @response.body
+    assert_match @es['activerecord']['errors']['messages']['blank'],            @response.body
+    assert_match @es['activerecord']['errors']['messages']['inclusion'],        @response.body
+    assert_match @es['activerecord']['attributes']['order']['address'],         @response.body
+    assert_match @es['activerecord']['attributes']['order']['name'],            @response.body
+    assert_match @es['activerecord']['attributes']['order']['email'],           @response.body
+    assert_match @es['activerecord']['attributes']['order']['pay_type'],        @response.body
+    post :save_order, :order => {
+        :name         => '',
+        :address      => '1121 S 9th St.',
+        :email        => 'bob@bob.com',
+        :pay_type     => 'po'
+      }
+    assert_response :success
+    assert_match @es['activerecord']['attributes']['order']['name'],            @response.body
+    assert_match @es['activerecord']['errors']['messages']['blank'],            @response.body
+    assert_match @es['activerecord']['models']['order'],                        @response.body
+  end
+
+  test "that known locale displays es on order complete" do
+    get :add_to_cart, :id => products(:one).id
+    get :checkout, :locale => 'es'
+    assert_response :success
+    assert_difference('Order.count', 1) do
+      post :save_order, :order => {
+          :name         => 'Jordan Dobson',
+          :address      => '1121 S. East Street, Tacoma, Wa 98405',
+          :email        => 'bob@bob.com',
+          :pay_type     => 'po'
+      }
+    end
+    assert_equal @es['flash']['thanks'], flash[:notice]
   end
 
 end

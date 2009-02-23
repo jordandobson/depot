@@ -573,3 +573,8 @@ div#cart div#total{
 div#cart hr{
   display: none;
 }
+.locale {
+  float:right;
+  padding-top: 0.2em;
+  padding-right: 1em;
+}

@@ -1,0 +1,55 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+es:
+
+  layout:
+    title:        "Publicaciones de Pragmatic"
+    side:
+      home:       "Inicio"
+      login:      "Entrar"
+    cart:
+      title:      "Carrito de la Compra"
+      button:
+        empty:    "Vaciar Carrito"
+        checkout: "Comprar"
+  main: 
+    title:      "Su Cat&aacute;logo de Pragmatic"
+    button:
+      add:      "A&ntilde;adir al Carrito"
+  number:
+    currency:
+      format:
+        unit: "$US"
+        precision: 2
+        separator: ","
+        delimiter: "."
+        format: "%n&nbsp;%u"
+  checkout:
+    legend:       "Por favor, introduzca sus datos"
+    name:         "Nombre"
+    address:      "Direcci&oacute;n"
+    email:        "E-mail"
+    pay_type:     "Pagar con"
+    pay_prompt:   "Seleccione un m\xC3\xA9todo de pago"
+    submit:       "Realizar Pedido"
+  activerecord:
+    models:
+      order:      "pedido"
+    attributes:
+      order:
+        address:  "Direcci&oacute;n"
+        name:     "Nombre"
+        email:    "E-mail"
+        pay_type: "Forma de pago"  
+    errors:
+      template:
+        body:     "Hay problemas con los siguientes campos:"
+        header:
+          one:    "1 error ha impedido que este {{model}} se guarde"
+          other:  "{{count}} errores han impedido que este {{model}} se guarde"
+      messages:
+        inclusion: "no est&aacute; incluido en la lista"
+        blank: "no puede quedar en blanco"
+  flash:
+    thanks: "Gracias por su pedido"

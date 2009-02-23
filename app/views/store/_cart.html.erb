@@ -1,16 +1,16 @@
 <% unless cart.items.empty? %>
-  <div id="cartTitle">Your Cart</div> 
+  <div id="cartTitle"><%= I18n.t 'layout.cart.title' %></div>
   <ul class="cartlist">
     <%= render(:partial => "cart_item", :collection => cart.items) %>
   </ul>
   <div id="total">
     <b>Cart Total</b>
-    <big><%=h number_to_currency( @cart.total_price / 100.0 )%></big>
+    <big><%= number_to_currency( @cart.total_price / 100.0 )%></big>
   </div>
   <hr size="1" />
     <% # button_to "Empty cart", :action => :empty_cart # ORIGINAL BUTTON CODE %>
     <% form_remote_tag :url => { :action => :empty_cart } do -%>
-      <%= submit_tag "Empty Cart" %> 
+      <%= submit_tag I18n.t('layout.cart.button.empty') %> 
     <% end -%> 
-    <%= button_to "Checkout", :action => :checkout if ! @order %>
+    <%= button_to I18n.t('layout.cart.button.checkout'), :action => :checkout if ! @order %>
 <% end %>

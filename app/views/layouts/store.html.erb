@@ -9,8 +9,16 @@
 </head>
 <body id="store">
   <div id="banner">
+  <!-- START:i18n -->
+  <% form_tag '', :method => 'GET', :class => 'locale' do %>
+    <%= select_tag 'locale', options_for_select(LANGUAGES, I18n.locale),
+      :onchange => 'this.form.submit()' %>
+    <%= submit_tag 'submit' %>
+    <%= javascript_tag "$$('.locale input').each(Element.hide)" %>
+  <% end %>
+  <!-- END:i18n -->
     <%= image_tag("logo.png", :align =>"right", :alt => "Pragmatic Bookself") %>
-    <b><%= @page_title || "Featured Items" %></b>
+    <b><%= @page_title || I18n.t('layout.title') %></b>
   </div>
   <div id="columns">      
     <menu id="side">
@@ -21,7 +29,8 @@
       <% if session[:counter] >=5 %><li><small>You've been here <%= pluralize(session[:counter], "time")
 %></small></li><% end %>
     <% end %>
-      <li><a href="/store">Home</a></li>
+      <li><a href="/store"><%= I18n.t 'layout.side.home' %></a></li>
+      <li><a href="/admin/login"><%= I18n.t 'layout.side.login' %></a></li>
       <% if session[:user_id] %> 
         <li><%= link_to 'Products', :controller => 'products' %></li>
         <li><%= link_to 'Users', :controller => 'users' %></li>

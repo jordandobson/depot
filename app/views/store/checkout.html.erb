@@ -1,27 +1,27 @@
 <div class="depot-form">
   <%= error_messages_for 'order' -%>
   <fieldset>
-    <legend>Please Enter Your Details</legend>
+    <legend><%= I18n.t 'checkout.legend' %></legend>
     <% form_for :order, :url => { :action => :save_order } do |form| %>
       <p>
-        <label for="order_name">Name:</label>
+        <%= form.label :name, I18n.t('checkout.name') + ":" %>
         <%= form.text_field :name, :size => 40 %>
       </p>
       <p>
-        <label for="order_address">Address:</label>
+        <%= form.label :address, I18n.t('checkout.address') + ":" %>
         <%= form.text_area :address, :rows => 3, :cols => 40 %>
       </p>
       <p>
-        <label for="order_email">Email:</label>
+        <%= form.label :email, I18n.t('checkout.email') + ":" %>
         <%= form.text_field :email, :size => 40 %>
       </p>
       <p>
-        <label for="order_pay_type">Pay With:</label>
+        <%= form.label :pay_type, I18n.t('checkout.pay_type') + ":" %>
         <%= form.select :pay_type,
           Order::PAYMENT_TYPES,
-          :prompt => "Select Payment Method" %>
+          :prompt => I18n.t('checkout.pay_prompt') %>
       </p>
-      <%= submit_tag "Place Order", :class => "submit" %>
+      <%= submit_tag I18n.t('checkout.submit'), :class => "submit" %>
     <% end -%>
   </fieldset>
 </div>
